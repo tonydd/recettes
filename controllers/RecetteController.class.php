@@ -13,7 +13,12 @@ class RecetteController extends Controller
         $params = $this->getParameters();
 
         if (isset($params['recette_id'])) {
-            $recette = Recette::load($params['recette_id']) ?? new Recette();
+            $recette = Recette::load($params['recette_id']);
+
+            if (!$recette || $recette === null) {
+                $recette = new Recette();
+            }
+
         } else {
             $recette = new Recette();
         }

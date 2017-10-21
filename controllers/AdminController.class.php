@@ -10,8 +10,6 @@ class AdminController extends Controller
 {
     public function indexAction()
     {
-        $cat = Categorie::load(1);
-
         $this->getRenderer()
             ->setTitle("Admin")
             ->setTemplate('test')

@@ -15,6 +15,6 @@
 
 <hr/><br/>
 
-<a href="<?php echo $this->buildUrl('recette', 'form', ['recette_id' => 9]);?>">
+<a href="<?php echo $this->buildUrl('recette', 'form', ['recette_id' => 9], false);?>">
     la recette numéro 9 !
 </a>

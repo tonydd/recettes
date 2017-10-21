@@ -51,6 +51,7 @@ CREATE TABLE recette_etape (
 );
 
 CREATE TABLE recette_ingredient (
+	id INT(11) NOT NULL AUTO_INCREMENT,
 	id_recette INT(11),
 	id_ingredient INT(11),
 	id_unite INT(11),
@@ -59,6 +60,7 @@ CREATE TABLE recette_ingredient (
 	PRIMARY KEY (`id_recette`, `id_ingredient`, `id_unite`),
 	FOREIGN KEY (`id_recette`) REFERENCES recette(`id`),
 	FOREIGN KEY (`id_ingredient`) REFERENCES ingredient(`id`),
-	FOREIGN KEY (`id_unite`) REFERENCES unite(`id`)
+	FOREIGN KEY (`id_unite`) REFERENCES unite(`id`),
+	INDEX (`id`)
 );
 

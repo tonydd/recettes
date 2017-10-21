@@ -14,12 +14,23 @@ $categories = $data['categories'] ?? array();
 
     <div class="category-display">
         <h4><?php echo $category->getNom();?></h4>
-        <a href=""><button type="button" class="btn btn-primary">Editer</button></a>
-        <button type="button" class="btn btn-danger">Supprimer</button>
+
+        <a href="<?php echo $this->buildUrl('categorie', 'form', ['cat_id' => $category->getId()]);?>">
+            <button type="button" class="btn btn-primary">Editer</button>
+        </a>
+
+        <a href="<?php echo $this->buildUrl('categorie', 'delete', ['cat_id' => $category->getId()]);?>">
+            <button type="button" class="btn btn-danger">Supprimer</button>
+        </a>
     </div>
 
 <?php } ?>
 
-<a href="#">
+<a href="<?php echo $this->buildUrl('categorie', 'form');?>">
     <button type="button" class="btn btn-success">Créer une catégorie</button>
+</a>
+
+
+<a href="<?php echo $this->buildUrl('categorie', 'test', ['aa' => '&?=wesh'], false);?>">
+    TEST de la famille
 </a>
