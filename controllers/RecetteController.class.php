@@ -8,6 +8,22 @@
 
 class RecetteController extends Controller
 {
+    public function indexAction()
+    {
+        $paginator = Paginator::getPaginator('Recette');
+
+        $paginator->setPagesize(2);
+
+        $recettes = $paginator->fetch();
+
+        $this->getRenderer()
+            ->setTitle('Recettes')
+            ->setTemplate('index_recette')
+            ->assign('recettes', $recettes)
+            ->assign('paginator', $paginator)
+            ->render();
+    }
+    
     public function formAction()
     {
         $params = $this->getParameters();

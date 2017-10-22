@@ -9,9 +9,6 @@
 <h2>Ajouter une recette</h2>
 <a href="<?php echo $this->buildUrl('recette','form');?>">C'est parti</a>
 
-<br/>
-<h2>Gérer les catégories</h2>
-<a href="<?php echo $this->buildUrl('categorie','index');?>">Par ici</a>
 
 <hr/><br/>
 

@@ -59,7 +59,6 @@ class Recette extends Model
         $html = '<form method="post" action="' . $renderer->buildUrl('recette', 'save') . '">';
         $html .= '<fieldset>';
         $html .= '<legend>Recette</legend>';
-        $html .= '<div class="row">';
         $html .= '<div class="form-container">';
 
 
@@ -69,12 +68,20 @@ class Recette extends Model
             $html .= '<input type="hidden" name="id" id="id" value="' . $id . '" />';
         }
 
+        // Début de ligne
+        $html .= '<div class="row">';
+
+        // Nom
+        $html .= '<div class="form-group col-lg-6">';
+        $html .= '<label for="nom">Nom : </label>';
+        $html .= '<input type="text" class="form-control" id="nom" name="nom" value="'.$this->getNom().'" />';
+        $html .= '</div>';
+
         // Category : A gérer en select
         $categories = Categorie::loadAll();
         $currentCat = $this->getCategorieId();
         $currentCatId = $currentCat !== null ? $currentCat->getId() : 0;
-        $html .= '<div class="form-group">';
-        $html .= '<div class="col-lg-6">';
+        $html .= '<div class="form-group col-lg-6">';
         $html .= '<label for="nom">Catégorie : </label>';
         $html .= '<select id="categorie_id" name="categorie_id" class="form-control">';
         foreach ($categories as $category) {
@@ -86,56 +93,52 @@ class Recette extends Model
         }
         $html .= '</select>';
         $html .= '</div>';
-        $html .= '</div>';
 
-        // Nom
-        $html .= '<div class="form-group">';
-        $html .= '<div class="col-lg-6">';
-        $html .= '<label for="nom">Nom : </label>';
-        $html .= '<input type="text" class="form-control" id="nom" name="nom" value="'.$this->getNom().'" />';
+        // Saut de ligne
         $html .= '</div>';
-        $html .= '</div>';
-
-        // nb_personnes
-        $html .= '<div class="form-group">';
-        $html .= '<div class="col-lg-6">';
-        $html .= '<label for="nb_personnes">Nombre de personnes : </label>';
-        $html .= '<input type="number" class="form-control" step="1" min="1" max="64" id="nb_personnes" name="nb_personnes" value="'.$this->getNbPersonnes().'" />';
-        $html .= '</div>';
-        $html .= '</div>';
-
-        // Temps préparation
-        $html .= '<div class="form-group">';
-        $html .= '<div class="col-lg-6">';
-        $html .= '<label for="temps_preparation">Temps de préparation (en minutes) : </label>';
-        $html .= '<input type="number" class="form-control" step="5" min="0" max="1000" id="temps_preparation" name="temps_preparation" value="'.$this->getTempsPreparation().'" />';
-        $html .= '</div>';
-        $html .= '</div>';
+        $html .= '<div class="row">';
 
         // Temps cuisson
-        $html .= '<div class="form-group">';
-        $html .= '<div class="col-lg-6">';
+        $html .= '<div class="form-group col-lg-6">';
         $html .= '<label for="temps_cuisson">Temps de cuisson (en minutes) : </label>';
         $html .= '<input type="number" class="form-control" step="5" min="0" max="1000" id="temps_cuisson" name="temps_cuisson" value="'.$this->getTempsCuisson().'" />';
         $html .= '</div>';
+
+        // Temps préparation
+        $html .= '<div class="form-group col-lg-6">';
+        $html .= '<label for="temps_preparation">Temps de préparation (en minutes) : </label>';
+        $html .= '<input type="number" class="form-control" step="5" min="0" max="1000" id="temps_preparation" name="temps_preparation" value="'.$this->getTempsPreparation().'" />';
         $html .= '</div>';
 
-        // Vegetarien
-        $html .= '<div class="form-check">';
-        $html .= '<div class="col-lg-6">';
-        $html .= '<label for="vegetarien" class="form-check-label">';
-        $html .= '<input type="checkbox" class="form-check-input" id="vegetarien" name="vegetarien" value="1" /> Végétarien';
-        $html .= '</label>';
+        // Saut de ligne
         $html .= '</div>';
+        $html .= '<div class="row">';
+
+        // nb_personnes
+        $html .= '<div class="form-group col-lg-6">';
+        $html .= '<label for="nb_personnes">Nombre de personnes : </label>';
+        $html .= '<input type="number" class="form-control" step="1" min="1" max="64" id="nb_personnes" name="nb_personnes" value="'.$this->getNbPersonnes().'" />';
         $html .= '</div>';
 
         // Abordable (faire des étoiles)
-        $html .= '<div class="form-check">';
-        $html .= '<div class="col-lg-6">';
+        $html .= '<div class="form-check col-lg-6">';
         $html .= '<label for="abordable" class="form-check-label">Abordable</label>';
         $html .= '<input type="number" class="form-control" step="1" min="1" max="5"
                     id="abordable" name="abordable" value="'.$this->getAbordable().'" />';
         $html .= '</div>';
+
+        // Saut de ligne
+        $html .= '</div>';
+        $html .= '<div class="row">';
+
+        // Vegetarien
+        $html .= '<div class="form-check col-lg-6">';
+        $html .= '<label for="vegetarien" class="form-check-label">';
+        $html .= '<input type="checkbox" class="form-check-input" id="vegetarien" name="vegetarien" value="1" /> Végétarien';
+        $html .= '</label>';
+        $html .= '</div>';
+
+        // Fin de ligne
         $html .= '</div>';
 
         // TODO gestion des étapes
@@ -146,7 +149,6 @@ class Recette extends Model
         $html .= '<button type="submit" class="btn btn-primary">Valider</button>';
 
         $html .= '</div>'; // End div.form-container
-        $html .= '</div>'; // End div.row
         $html .= '</fieldset>';
         $html .= '</form>';
 

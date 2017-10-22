@@ -10,9 +10,19 @@ class AdminController extends Controller
 {
     public function indexAction()
     {
+        /** @var LoginController $loginCtl */
+        $loginCtl = Controller::getInstance('login');
+
+        if (!$loginCtl->isAdmin()) {
+            $this->getRenderer()
+                ->addMessage("Vous n'avez pas autorisation de voir cette page.", Renderer::WARN_MESSAGE);
+
+            return $this->redirectHome();
+        }
+
         $this->getRenderer()
             ->setTitle("Admin")
-            ->setTemplate('test')
+            ->setTemplate('index_admin')
             ->render();
     }
 

@@ -13,7 +13,7 @@ $recette = $data['recette'];
     <br/>
     <?php echo $recette->generateForm();?>
 
-    <div class="form_ingredients">
+    <div class="form_ingredients form-container">
         <fieldset>
             <legend>Ingrédients</legend>
 
@@ -27,7 +27,7 @@ $recette = $data['recette'];
 
     <br/>
 
-    <div class="form-etapes">
+    <div class="form-etapes form-container">
         <fieldset>
             <legend>Etapes</legend>
         </fieldset>
