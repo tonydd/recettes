@@ -28,4 +28,19 @@ class RecetteIngredient extends Model
             'type'      => Model::RELATION_ONE,
         )
     );
+
+    public function getIngredient()
+    {
+        return $this->getIdIngredient();
+    }
+
+    public function getUnite()
+    {
+        return $this->getIdUnite();
+    }
+
+    public function getRecette()
+    {
+        return $this->getIdRecette();
+    }
 }

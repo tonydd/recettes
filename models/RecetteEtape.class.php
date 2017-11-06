@@ -9,7 +9,14 @@
 class RecetteEtape extends Model
 {
     protected $id;
-    protected $idRecette;
+    protected $id_recette;
     protected $ordre;
     protected $explication;
+
+    protected static $_relations = array(
+        'id_recette'  => array(
+            'class' => 'Recette',
+            'type'  => Model::RELATION_ONE
+        )
+    );
 }

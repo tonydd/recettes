@@ -54,6 +54,7 @@ class FileCache implements CacheInterface
 
     public function getFileName($key)
     {
+        $key = str_replace(DIRECTORY_SEPARATOR, '--', $key);
         return self::PATH . $key . '.data';
     }
 

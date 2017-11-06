@@ -37,6 +37,9 @@ class Recette extends Model
         )
     );
 
+    /**
+     * @return Ingredient[]
+     */
     public function getIngredients()
     {
         if (!in_array('ingredients', $this->_relationsLoaded)) {
@@ -56,7 +59,7 @@ class Recette extends Model
         $renderer = Controller::getCurrentController()->getRenderer();
 
 
-        $html = '<form method="post" action="' . $renderer->buildUrl('recette', 'save') . '">';
+        $html = '<form id="form-recette-body" method="post" action="' . $renderer->buildUrl('recette', 'save') . '">';
         $html .= '<fieldset>';
         $html .= '<legend>Recette</legend>';
         $html .= '<div class="form-container">';
@@ -153,5 +156,41 @@ class Recette extends Model
         $html .= '</form>';
 
         return $html;
+    }
+
+    public static function getQueryForFilters($filters)
+    {
+        $req = PDOHelper::getInstance()->createSelect();
+        $req->from(Helper::fromCamelCase(get_called_class()));
+        $clauses = PDORequest::clause();
+
+        $index = 0;
+
+        foreach ($filters as $filter) {
+
+            $field = $filter['field'];
+            if ($field === 'nom') {
+                $value = "%".$filter['value']."%";
+                $cs = false;
+                $comp = 'LIKE';
+            }
+            else {
+                $value = $filter['value'];
+                $cs = true;
+                $comp = PDORequestClause::COMP_DEFAULT_OP;
+            }
+
+
+            if ($index === 0)
+                $clauses->where($field, $value, $comp, $cs);
+            else
+                $clauses->andWhere($field, $value, $comp, $cs);
+
+            $index++;
+        }
+
+        $req->where($clauses);
+
+        return $req;
     }
 }

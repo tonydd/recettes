@@ -8,7 +8,7 @@
 
 class AdminController extends Controller
 {
-    public function indexAction()
+    protected function _beforeAction()
     {
         /** @var LoginController $loginCtl */
         $loginCtl = Controller::getInstance('login');
@@ -19,7 +19,10 @@ class AdminController extends Controller
 
             return $this->redirectHome();
         }
+    }
 
+    public function indexAction()
+    {
         $this->getRenderer()
             ->setTitle("Admin")
             ->setTemplate('index_admin')
@@ -28,6 +31,7 @@ class AdminController extends Controller
 
     public function anotherAction()
     {
-        $this->redirect('Admin', 'index', array('a' => 'b'));
+        $conf = new CoreConf();
+        $conf->getCoreVal('cdn/js');
     }
 }

@@ -11,3 +11,7 @@ div#form_recette {
 div#form_recette div.form-container {
     padding: 10px;
 }
+
+#form_recette ul {
+    list-style-type:none;
+}

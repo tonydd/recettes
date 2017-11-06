@@ -15,7 +15,7 @@ class CategorieController extends Controller
         $this->getRenderer()
             ->setTitle('Catégories')
             ->assign('categories', $categories)
-            ->setTemplate('categories_index')
+            ->setTemplate('categorie/index')
             ->render();
     }
 
